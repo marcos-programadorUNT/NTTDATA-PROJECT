@@ -1,6 +1,9 @@
 package com.example.movement.models;
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 @Entity
@@ -11,4 +14,8 @@ public class PersonalCustomer extends Customer implements Serializable{
     private String names;
     @NotEmpty
     private String surnames;
+    @NotNull
+    @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern="yyyy-MM-dd")
+    private Date dateBirth;
 }
