@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
 /**
@@ -19,15 +21,16 @@ import java.time.LocalDate;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 
 public class BusinessCustomer extends Customer{
     @Column(name = "business_name")
+    @NotEmpty(message = "The business name should not be empty")
     private String businessName;
     @Column(name = "ruc", unique = true)
+    @NotEmpty(message = "The RUC should not be empty")
     private String ruc;
     @Column(name = "foundation_date")
+    @NotNull(message = "The foundation date should not be empty")
     private LocalDate foundationDate;
-
 
 }
