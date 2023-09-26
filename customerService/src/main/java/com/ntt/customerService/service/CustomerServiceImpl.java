@@ -11,32 +11,73 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-
+/**
+ * Implementation of service methods of Customer, contains basic functions (CRUD)
+ *
+ */
 @Service
 @AllArgsConstructor
 public class CustomerServiceImpl implements CustomerService {
 
     private CustomerRepository customerRepository;
+
+    /**
+     * Retrieves a list of all Customers
+     *
+     * @return List of Customer objects
+     */
     @Override
     public List<Customer> getAll() {
         return customerRepository.findAll();
     }
+
+    /**
+     * Retrieves a List of Customers based on their type.
+     *
+     * @param type The type of customers to retrieve (personal or business)
+     * @return List of Customer objects matching the specified type.
+     */
     @Override
     public List<Customer> getCustomersByType(String type) {
         return customerRepository.findByCustomerType(type);
     }
+    /**
+     * Retrieves a Customer based on their id
+     *
+     * @param id The id of customer to retrieve
+     * @return An Optional list of Customer objects, or empty if not found.
+     */
     @Override
     public Optional<Customer> getCustomerById(Long id) {
         return customerRepository.findById(id);
     }
+    /**
+     * Creates a new Personal Customer
+     *
+     * @param personalCustomer The PersonalCustomer object to be created.
+     * @return The created PersonaCustomer object.
+     */
     @Override
     public PersonalCustomer createPersonalCustomer(PersonalCustomer personalCustomer) {
         return customerRepository.save(personalCustomer);
     }
+    /**
+     * Creates a new Business Customer
+     *
+     * @param businessCustomer The BusinessCustomer object to be created.
+     * @return The created BusinessCustomer object.
+     */
     @Override
     public BusinessCustomer createBusinessCustomer(BusinessCustomer businessCustomer) {
         return customerRepository.save(businessCustomer);
     }
+    /**
+     * Updates an existing Customer
+     *
+     * @param id The id of the customer to be updated.
+     * @param updatedCustomer The CustomerDto containing the updated information
+     * @return The updated Customer object.
+     */
     @Override
     public Customer updateCustomer(Long id, CustomerDto updatedCustomer) {
         Customer customer= customerRepository.findById(id).orElse(null);
@@ -65,6 +106,12 @@ public class CustomerServiceImpl implements CustomerService {
         }
         return null;
     }
+    /**
+     * Deletes a Customer based on their id.
+     *
+     * @param id The id of the customer to be deleted.
+     * @return The deleted Customer object.
+     */
     @Override
     public Customer deleteCustomer(Long id) {
         Optional<Customer> customerDb = getCustomerById(id);

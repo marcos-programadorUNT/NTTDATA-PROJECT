@@ -7,6 +7,10 @@ import lombok.Setter;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Class that defines the format of REST errors.
+ *
+ */
 @Getter
 @Setter
 @Builder

@@ -22,7 +22,6 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 
-
 public class PersonalCustomer extends Customer {
     @Column(name = "first_name")
     @NotEmpty(message = "The first name should not be empty")
@@ -30,9 +29,6 @@ public class PersonalCustomer extends Customer {
     @Column(name = "last_name")
     @NotEmpty(message = "The last name should not be empty")
     private String lastName;
-    @Column(name = "phone_number")
-    @NotEmpty(message = "The phone number should not be empty")
-    private String phoneNumber;
     @Column(name = "document_number", unique = true)
     @NotEmpty(message = "The document number should not be empty")
     private String documentNumber;

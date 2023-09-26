@@ -4,6 +4,11 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDate;
+
+/**
+ * Dto for Customer to allow update and create methods with heritage
+ *
+ */
 @Setter
 @Getter
 public class CustomerDto {

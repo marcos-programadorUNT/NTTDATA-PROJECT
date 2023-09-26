@@ -30,6 +30,9 @@ public class Customer {
     @Column(name= "address", length = 50, nullable = false)
     @NotNull(message = "The address should not be empty")
     private String address;
+    @Column(name = "phone_number", nullable = false)
+    @NotNull(message = "The phone number should not be empty")
+    private String phoneNumber;
     @Column(name= "status", nullable = false)
     @NotNull(message = "The status should not be empty")
     private String status;
