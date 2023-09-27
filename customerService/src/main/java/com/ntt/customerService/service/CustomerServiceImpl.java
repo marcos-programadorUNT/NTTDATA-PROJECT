@@ -3,6 +3,7 @@ package com.ntt.customerService.service;
 import com.ntt.customerService.customer.domain.dto.CustomerDto;
 import com.ntt.customerService.customer.domain.model.entity.BusinessCustomer;
 import com.ntt.customerService.customer.domain.model.entity.Customer;
+import com.ntt.customerService.customer.domain.model.entity.CustomerType;
 import com.ntt.customerService.customer.domain.model.entity.PersonalCustomer;
 import com.ntt.customerService.customer.domain.repository.CustomerRepository;
 import com.ntt.customerService.customer.domain.service.CustomerService;
@@ -39,7 +40,7 @@ public class CustomerServiceImpl implements CustomerService {
      */
     @Override
     public List<Customer> getCustomersByType(String type) {
-        return customerRepository.findByCustomerType(type);
+        return customerRepository.findByCustomerType(CustomerType.valueOf(type));
     }
     /**
      * Retrieves a Customer based on their id

@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ntt.customerService.customer.domain.dto.CustomerDto;
 import com.ntt.customerService.customer.domain.model.entity.BusinessCustomer;
 import com.ntt.customerService.customer.domain.model.entity.Customer;
+import com.ntt.customerService.customer.domain.model.entity.CustomerType;
 import com.ntt.customerService.customer.domain.model.entity.PersonalCustomer;
 import com.ntt.customerService.customer.domain.service.CustomerService;
 import lombok.AllArgsConstructor;
@@ -61,6 +62,10 @@ public class CustomerController {
 
     }
 
+    /**
+     * Service for Customer
+     *
+     */
     private final CustomerService customerService;
 
     /**

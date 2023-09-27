@@ -3,6 +3,7 @@ package com.ntt.customerService.customer.domain.model.entity;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
@@ -26,6 +27,7 @@ public class Customer {
     private Long id;
     @Column(name = "email", length = 25, nullable = false)
     @NotNull(message = "The email should not be empty")
+    @Email
     private String email;
     @Column(name= "address", length = 50, nullable = false)
     @NotNull(message = "The address should not be empty")
@@ -37,6 +39,7 @@ public class Customer {
     @NotNull(message = "The status should not be empty")
     private String status;
     @Column(name = "customer_type", insertable = false, updatable = false)
-    private String customerType;
+    @Enumerated(EnumType.STRING)
+    private CustomerType customerType;
 
 }

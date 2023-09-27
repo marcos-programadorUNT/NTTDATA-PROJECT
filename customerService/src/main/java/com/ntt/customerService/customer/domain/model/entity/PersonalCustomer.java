@@ -8,6 +8,7 @@ import lombok.Setter;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.time.LocalDate;
 
 /**
@@ -31,6 +32,7 @@ public class PersonalCustomer extends Customer {
     private String lastName;
     @Column(name = "document_number", unique = true)
     @NotEmpty(message = "The document number should not be empty")
+    @Size(min = 8, max = 8, message = "The document number should be 8 characters")
     private String documentNumber;
     @Column(name = "date_of_birth")
     @NotNull(message = "The date of birth should not be empty")
