@@ -1,0 +1,30 @@
+server:
+  port: 9000
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id:
+          uri:
+          predicates:
+          - Path=/movement1/movements/**
+          filters:
+          - RewritePath=/movement1,/
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allowedOrigins: "*" #colocas todos los links origen que deben acceso, en este caso "*" signfica que todos tienen acceso
+            allowedHeaders:
+              - Content-Type
+              - Access-Control-Allow-Origin
+              - Access-Control-Allow-Headers
+              - Authorization
+              - X-Requested-With
+              - requestId
+              - Correlation-Id
+            allowedMethods:
+              - GET
+              - PUT
+              - PACH
+              - DELETE
+              - POST
