@@ -30,6 +30,21 @@ public interface CustomerService {
     List<Customer> getCustomersByType(String type);
 
     /**
+     * Retrieves a Customer based on his documentNumber
+     *
+     * @param documentNumber Document Number of a personal customer.
+     * @return PersonalCustomer found by his matching document number.
+     */
+    PersonalCustomer getCustomerByDocumentNumber(String documentNumber);
+    /**
+     * Retrieves a Customer based on his RUC
+     *
+     * @param ruc RUC of a business customer.
+     * @return BusinessCustomer found by his matching RUC.
+     */
+    BusinessCustomer getCustomerByRuc(String ruc);
+
+    /**
      * Retrieves a Customer based on their id
      *
      * @param id The id of customer to retrieve

@@ -42,6 +42,28 @@ public class CustomerServiceImpl implements CustomerService {
     public List<Customer> getCustomersByType(String type) {
         return customerRepository.findByCustomerType(CustomerType.valueOf(type));
     }
+
+    /**
+     * Retrieves a Customer based on his documentNumber
+     *
+     * @param documentNumber Document Number of a personal customer.
+     * @return PersonalCustomer found by his matching document number.
+     */
+    @Override
+    public PersonalCustomer getCustomerByDocumentNumber(String documentNumber) {
+        return customerRepository.findByDocumentNumber(documentNumber);
+    }
+    /**
+     * Retrieves a Customer based on his RUC
+     *
+     * @param ruc RUC of a business customer.
+     * @return BusinessCustomer found by his matching RUC.
+     */
+    @Override
+    public BusinessCustomer getCustomerByRuc(String ruc) {
+        return customerRepository.findByRuc(ruc);
+    }
+
     /**
      * Retrieves a Customer based on their id
      *

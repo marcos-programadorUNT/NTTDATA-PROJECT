@@ -89,6 +89,41 @@ public class CustomerController {
     }
 
     /**
+     * Retrieves a Customer by his Unique document.
+     * @param documentNumber Document Number of the personal customer
+     * @param ruc RUC of the customer business
+     * @return Customer or 404 Not Found
+     */
+    @GetMapping("/search")
+    public Customer searchCustomer(
+            @RequestParam(value = "documentNumber", required = false) String documentNumber,
+            @RequestParam(value = "ruc", required = false) String ruc
+    ) {
+        if (documentNumber != null && ruc != null){
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Insert only one parameter.");
+        }
+        else if (documentNumber != null) {
+            PersonalCustomer personalCustomerFound = customerService.getCustomerByDocumentNumber(documentNumber);
+            if (personalCustomerFound !=null ){
+                return personalCustomerFound;
+            }
+            else {
+                throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Customer not found.");
+            }
+        } else if (ruc != null) {
+            BusinessCustomer businessCustomerFound = customerService.getCustomerByRuc(ruc);
+            if (businessCustomerFound !=null ){
+                return businessCustomerFound;
+            }
+            else {
+                throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Customer not found.");
+            }
+        } else {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "No parameter was inserted.");
+        }
+    }
+
+    /**
      * Creates a new personal customer.
      *
      * @param customer PersonalCustomer object to be created.
