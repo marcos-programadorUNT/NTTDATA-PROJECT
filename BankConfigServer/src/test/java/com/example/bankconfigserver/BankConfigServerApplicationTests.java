@@ -1,10 +1,10 @@
-package com.example.movement;
+package com.example.bankconfigserver;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class MovementApplicationTests {
+class BankConfigServerApplicationTests {
 
     @Test
     void contextLoads() {

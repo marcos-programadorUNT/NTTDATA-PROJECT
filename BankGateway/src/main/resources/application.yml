@@ -4,8 +4,8 @@ spring:
   cloud:
     gateway:
       routes:
-        - id:
-          uri:
+        - id: movement1
+          uri: http://localhost:8050
           predicates:
           - Path=/movement1/movements/**
           filters:
