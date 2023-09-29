@@ -1,4 +1,4 @@
-package com.example.movementclient.domain.model;
+package com.example.bankingproductclient.domain.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
