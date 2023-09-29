@@ -10,6 +10,12 @@ spring:
           - Path=/movement1/movements/**
           filters:
           - RewritePath=/movement1,/
+        - id: bankingProduct1
+          uri: http://localhost:8050
+          predicates:
+            - Path=/bankingProduct1/bankingProducts/**
+          filters:
+            - RewritePath=/bankingProduct1,/
       globalcors:
         cors-configurations:
           '[/**]':

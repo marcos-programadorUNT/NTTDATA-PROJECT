@@ -9,7 +9,7 @@ spring:
           search-paths: ClientConfiguration
           username: mhernandezb@unitru.edu.pe
           password: marcosivan1717
-          default-label: master
+          default-label: marcos
   security:
     user:
       name: root
