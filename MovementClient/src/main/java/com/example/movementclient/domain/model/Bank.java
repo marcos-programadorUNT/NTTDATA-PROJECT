@@ -1,23 +1,31 @@
 package com.example.movementclient.domain.model;
 
-import lombok.Data;
+import lombok.*;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
-import java.io.Serializable;
 import java.util.List;
 
 @Entity
-@Table(name = "bank")
-@Data
-public class Bank implements Serializable{
-    private static final long serialVersionUID = 1L;
+@Table(name = "banks")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+public class Bank{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @NotEmpty
+    @Column(name = "business_name", length = 50, nullable = false)
+    @NotEmpty(message = "The business_name should not be empty")
     private String businessName;
-    @NotEmpty
+    @Column(name = "direction", length = 100, nullable = false)
+    @NotEmpty(message = "The direction should not be empty")
     private String direction;
-    @NotEmpty
+    @Column(name = "status", length = 8, nullable = false)
+    @NotEmpty(message = "The status should not be empty")
     private String status;
+    @OneToMany
+    @JoinColumn(name = "bankId")
+    private List<BankingProduct> bankingProducts;
 }
