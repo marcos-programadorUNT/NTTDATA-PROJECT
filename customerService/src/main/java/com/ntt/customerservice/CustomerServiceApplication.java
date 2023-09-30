@@ -1,12 +1,12 @@
-package com.ntt.customerService;
+package com.ntt.customerservice;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
- * This microservice has its own database
+ * This microservice has its own database.
  *
- * @author Emilio Fernando Valdivia Cisneros
+ * @author Emilio Fernando Valdivia Cisneros.
  */
 
 @SpringBootApplication
