@@ -1,11 +1,12 @@
 package com.ntt.customerService.customer.api;
 
+import java.util.List;
+import java.util.Map;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.List;
-import java.util.Map;
+
 
 /**
  * Class that defines the format of REST errors.
@@ -15,6 +16,6 @@ import java.util.Map;
 @Setter
 @Builder
 public class ErrorMessage {
-    private String code;
-    private List<Map<String,String>> messages;
+  private String code;
+  private List<Map<String, String>> messages;
 }
