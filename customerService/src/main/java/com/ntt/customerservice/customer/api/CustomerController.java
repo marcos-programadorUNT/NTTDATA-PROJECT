@@ -1,17 +1,14 @@
-package com.ntt.customerService.customer.api;
+package com.ntt.customerservice.customer.api;
 
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.ntt.customerService.customer.domain.dto.CustomerDto;
-import com.ntt.customerService.customer.domain.model.entity.BusinessCustomer;
-import com.ntt.customerService.customer.domain.model.entity.Customer;
-import com.ntt.customerService.customer.domain.model.entity.PersonalCustomer;
-import com.ntt.customerService.customer.domain.service.CustomerService;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import com.ntt.customerservice.customer.domain.dto.CustomerDto;
+import com.ntt.customerservice.customer.domain.model.entity.BusinessCustomer;
+import com.ntt.customerservice.customer.domain.model.entity.Customer;
+import com.ntt.customerservice.customer.domain.model.entity.PersonalCustomer;
+import com.ntt.customerservice.customer.domain.service.CustomerService;
+import java.util.*;
 import java.util.stream.Collectors;
 import javax.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -74,8 +71,15 @@ public class CustomerController {
    * @return List of Customer objects.
    */
   @GetMapping
-  public List<Customer> fetchAll() {
-    return customerService.getAll();
+  public ResponseEntity<List<Customer>> fetchAll(
+      @RequestParam(name = "customerId", required = false) Long customerId) {
+    List<Customer> customers;
+    if (Optional.ofNullable(customerId).isEmpty()) {
+      customers = customerService.getAll();
+    } else {
+      customers = List.of(customerService.getCustomerById(customerId));
+    }
+    return ResponseEntity.ok(customers);
   }
 
   /**

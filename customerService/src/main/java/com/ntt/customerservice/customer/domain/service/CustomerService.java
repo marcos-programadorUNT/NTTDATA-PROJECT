@@ -1,11 +1,10 @@
-package com.ntt.customerService.customer.domain.service;
+package com.ntt.customerservice.customer.domain.service;
 
-import com.ntt.customerService.customer.domain.dto.CustomerDto;
-import com.ntt.customerService.customer.domain.model.entity.BusinessCustomer;
-import com.ntt.customerService.customer.domain.model.entity.Customer;
-import com.ntt.customerService.customer.domain.model.entity.PersonalCustomer;
+import com.ntt.customerservice.customer.domain.dto.CustomerDto;
+import com.ntt.customerservice.customer.domain.model.entity.BusinessCustomer;
+import com.ntt.customerservice.customer.domain.model.entity.Customer;
+import com.ntt.customerservice.customer.domain.model.entity.PersonalCustomer;
 import java.util.List;
-import java.util.Optional;
 
 /**
  * Service of Customer contains basic functions (CRUD).
@@ -48,15 +47,15 @@ public interface CustomerService {
    * Retrieves a Customer based on their id.
    *
    * @param id The id of customer to retrieve.
-   * @return An Optional list of Customer objects, or empty if not found.
+   * @return A Customer object, or empty if not found.
    */
-  Optional<Customer> getCustomerById(Long id);
+  Customer getCustomerById(Long id);
 
   /**
    * Creates a new Personal Customer.
    *
    * @param personalCustomer The PersonalCustomer object to be created.
-   * @return The created PersonaCustomer object.
+   * @return The created PersonalCustomer object.
    */
   PersonalCustomer createPersonalCustomer(PersonalCustomer personalCustomer);
 

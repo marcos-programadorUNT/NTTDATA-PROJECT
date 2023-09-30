@@ -1,4 +1,4 @@
-package com.ntt.customerService.customer.api;
+package com.ntt.customerservice.customer.api;
 
 import java.util.List;
 import java.util.Map;

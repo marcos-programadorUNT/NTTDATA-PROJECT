@@ -1,4 +1,4 @@
-package com.ntt.customerService;
+package com.ntt.customerservice;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

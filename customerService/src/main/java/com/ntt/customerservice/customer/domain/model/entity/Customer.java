@@ -1,4 +1,4 @@
-package com.ntt.customerService.customer.domain.model.entity;
+package com.ntt.customerservice.customer.domain.model.entity;
 
 
 
@@ -6,6 +6,8 @@ import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
+
 /**
  * Entity of the Customer object that defines all his common attributes.
  * Customer parent class.
@@ -20,6 +22,7 @@ import lombok.*;
 @AllArgsConstructor
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "customer_type", discriminatorType = DiscriminatorType.STRING)
+@SuperBuilder
 
 public class Customer {
   @Id

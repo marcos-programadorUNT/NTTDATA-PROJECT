@@ -1,4 +1,4 @@
-package com.ntt.customerService.customer.domain.dto;
+package com.ntt.customerservice.customer.domain.dto;
 
 import java.time.LocalDate;
 import javax.persistence.GeneratedValue;

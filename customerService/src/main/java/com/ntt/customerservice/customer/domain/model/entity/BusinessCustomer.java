@@ -1,14 +1,12 @@
-package com.ntt.customerService.customer.domain.model.entity;
+package com.ntt.customerservice.customer.domain.model.entity;
 
 import java.time.LocalDate;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 
 /**
@@ -22,6 +20,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@SuperBuilder
 
 public class BusinessCustomer extends Customer {
   @Column(name = "business_name")

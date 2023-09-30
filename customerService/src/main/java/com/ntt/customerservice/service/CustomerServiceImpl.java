@@ -1,16 +1,15 @@
-package com.ntt.customerService.service;
+package com.ntt.customerservice.service;
 
 
-import com.ntt.customerService.customer.domain.dto.CustomerDto;
-import com.ntt.customerService.customer.domain.model.entity.BusinessCustomer;
-import com.ntt.customerService.customer.domain.model.entity.Customer;
-import com.ntt.customerService.customer.domain.model.entity.CustomerType;
-import com.ntt.customerService.customer.domain.model.entity.PersonalCustomer;
-import com.ntt.customerService.customer.domain.repository.CustomerRepository;
-import com.ntt.customerService.customer.domain.service.CustomerService;
+import com.ntt.customerservice.customer.domain.dto.CustomerDto;
+import com.ntt.customerservice.customer.domain.model.entity.BusinessCustomer;
+import com.ntt.customerservice.customer.domain.model.entity.Customer;
+import com.ntt.customerservice.customer.domain.model.entity.CustomerType;
+import com.ntt.customerservice.customer.domain.model.entity.PersonalCustomer;
+import com.ntt.customerservice.customer.domain.repository.CustomerRepository;
+import com.ntt.customerservice.customer.domain.service.CustomerService;
 import java.util.List;
-import java.util.Optional;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 
@@ -19,10 +18,10 @@ import org.springframework.stereotype.Service;
  *
  */
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class CustomerServiceImpl implements CustomerService {
 
-  private CustomerRepository customerRepository;
+  private final CustomerRepository customerRepository;
 
   /**
    * Retrieves a list of all Customers.
@@ -71,11 +70,11 @@ public class CustomerServiceImpl implements CustomerService {
    * Retrieves a Customer based on their id.
    *
    * @param id The id of customer to retrieve.
-   * @return An Optional list of Customer objects, or empty if not found.
+   * @return A Customer object, or empty if not found.
    */
   @Override
-  public Optional<Customer> getCustomerById(Long id) {
-    return customerRepository.findById(id);
+  public Customer getCustomerById(Long id) {
+    return customerRepository.findById(id).orElse(null);
   }
 
   /**
@@ -141,11 +140,11 @@ public class CustomerServiceImpl implements CustomerService {
    */
   @Override
   public Customer deleteCustomer(Long id) {
-    Optional<Customer> customerDb = getCustomerById(id);
-    if (customerDb.isEmpty()) {
+    Customer customerDb = getCustomerById(id);
+    if (customerDb == null) {
       return null;
     }
-    Customer customerSelected = customerDb.get();
+    Customer customerSelected = customerDb;
     customerSelected.setStatus("DELETED");
     return customerRepository.save(customerSelected);
   }
