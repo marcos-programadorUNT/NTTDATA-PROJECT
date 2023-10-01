@@ -20,7 +20,7 @@ import java.util.Objects;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/bankingProducts")
+@RequestMapping("/api/bankingProducts")
 public class BankingProductController {
     @Autowired
     private BankingProductService bankingProductService;
