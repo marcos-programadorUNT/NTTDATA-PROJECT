@@ -6,6 +6,12 @@
       <list>
         <option value="$PROJECT_DIR$/Movement/pom.xml" />
         <option value="$PROJECT_DIR$/customerService/pom.xml" />
+        <option value="$PROJECT_DIR$/BankConfigServer/pom.xml" />
+        <option value="$PROJECT_DIR$/BankGateway/pom.xml" />
+        <option value="$PROJECT_DIR$/CustomerClient/pom.xml" />
+        <option value="$PROJECT_DIR$/BankingProductClient/pom.xml" />
+        <option value="$PROJECT_DIR$/BankServer/pom.xml" />
+        <option value="$PROJECT_DIR$/MovementClient/pom.xml" />
       </list>
     </option>
   </component>
