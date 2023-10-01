@@ -1,14 +1,14 @@
 package com.example.movementclient.domain.model;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
+import javax.persistence.Column;
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-import java.time.LocalDate;
 
 /**
  * PersonalCustomer class that inherits from Customer
@@ -21,8 +21,22 @@ import java.time.LocalDate;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+//@SuperBuilder
 public class SavingsAccount extends PassiveBankingProduct{
     @Column(name = "monthly_movement_limit", nullable = false)
     @NotNull(message = "The monthly_movement_limit should not be empty")
     private byte monthlyMovementLimit;
+
+    /*
+    @Override
+    public Integer getId() {
+        return super.getId();
+    }
+
+    @Override
+    public void setId(Integer id) {
+        super.setId(id);
+    }
+*/
+    
 }

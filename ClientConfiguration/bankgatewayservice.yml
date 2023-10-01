@@ -19,6 +19,15 @@ spring:
           uri: lb://customerservice
           predicates:
             - Path=/api/customers/**
+        - id: movementservice
+          uri: lb://movementservice
+          predicates:
+            - Path=/api/movements/**
+        - id: bankingproductservice
+          uri: lb://bankingproductservice
+          predicates:
+            - Path=/api/bankingProducts/**
+
       globalcors:
         cors-configurations:
           '[/**]':

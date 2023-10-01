@@ -1,11 +1,15 @@
 package com.example.movementclient.domain.model;
-import lombok.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
@@ -22,6 +26,7 @@ import java.util.List;
 @AllArgsConstructor
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name="banking_product_type", discriminatorType = DiscriminatorType.STRING)
+//@SuperBuilder
 public class BankingProduct {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,6 +39,11 @@ public class BankingProduct {
     @Column(name = "status", length = 8, nullable = false)
     @NotEmpty(message = "The status should not be empty")
     private String status;
+
+    @Column(name = "main_banking_product_type", length = 40, nullable = false)
+    @NotEmpty(message = "The status should not be empty")
+    private String mainBankingProductType;
+
     @Column(name = "balance", columnDefinition = "DECIMAL(11,2)", nullable = false)
     @NotNull
     private float balance;
@@ -43,14 +53,14 @@ public class BankingProduct {
     @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date registrationDate;
     @ManyToOne
-    //@JsonIgnore
+    @JsonIgnore
     @JoinColumn(name = "bankId")
     private Bank bank;
     @OneToMany
     @JoinColumn(name = "bankingProductId")
     private List<Movement> movements;
     @ManyToOne
-    //@JsonIgnore
+    @JsonIgnore
     @JoinColumn(name = "customer_id")
     private Customer customer;
     @Column(name = "banking_product_type", insertable = false, updatable = false)
