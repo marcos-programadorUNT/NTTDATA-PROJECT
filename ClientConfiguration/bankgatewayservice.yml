@@ -27,11 +27,6 @@ spring:
           uri: lb://bankingproductservice
           predicates:
             - Path=/api/bankingProducts/**
-        - id: bankingproductservice
-          uri: lb://bankingproductservice
-          predicates:
-            - Path=/api2/bankingProducts2/**
-
       globalcors:
         cors-configurations:
           '[/**]':
