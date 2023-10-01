@@ -1,0 +1,37 @@
+server:
+  port: 9000
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka
+
+spring:
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: customerservice
+          uri: lb://customerservice
+          predicates:
+            - Path=/api/customers/**
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allowedOrigins: "*" #colocas todos los links origen que deben acceso, en este caso "*" signfica que todos tienen acceso
+            allowedHeaders:
+              - Content-Type
+              - Access-Control-Allow-Origin
+              - Access-Control-Allow-Headers
+              - Authorization
+              - X-Requested-With
+              - requestId
+              - Correlation-Id
+            allowedMethods:
+              - GET
+              - PUT
+              - PATCH
+              - DELETE
+              - POST
