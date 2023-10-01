@@ -11,7 +11,7 @@ spring:
           filters:
           - RewritePath=/movement1,/
         - id: bankingProduct1
-          uri: http://localhost:8050
+          uri: http://localhost:8060
           predicates:
             - Path=/bankingProduct1/bankingProducts/**
           filters:
