@@ -6,7 +6,7 @@ server:
 
 spring:
   application:
-    name: customer_service
+    name: customerservice
   h2:
     console:
       enabled: true
@@ -33,4 +33,3 @@ spring:
     username: sa
     password: 12345
     data: classpath:data.sql
-

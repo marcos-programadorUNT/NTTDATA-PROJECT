@@ -7,9 +7,9 @@ spring:
         git:
           uri: https://github.com/marcos-programadorUNT/NTTDATA-PROJECT.git
           search-paths: ClientConfiguration
-          username: mhernandezb@unitru.edu.pe
-          password: marcosivan1717
-          default-label: marcos
+          username: ${GIT_USER}
+          password: ${GIT_PASSWORD}
+          default-label: development
   security:
     user:
       name: root
