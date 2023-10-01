@@ -8,9 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @FeignClient(name = "customerservice", fallback = CustomerHystrixFallbackFactory.class)
-@RequestMapping("api/customers")
 public interface CustomerClient {
-  @GetMapping("/search")
+  @GetMapping("api/customers/search")
   public ResponseEntity<Customer> searchCustomer(
       @RequestParam(value = "documentNumber", required = false) String documentNumber,
       @RequestParam(value = "ruc", required = false) String ruc);
