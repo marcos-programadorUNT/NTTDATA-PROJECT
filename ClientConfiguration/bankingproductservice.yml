@@ -13,4 +13,4 @@ spring:
     password:
     data: classpath:data.sql
   application:
-    name: banking_products
+    name: bankingproductservice
