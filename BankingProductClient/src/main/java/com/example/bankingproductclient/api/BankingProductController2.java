@@ -53,7 +53,6 @@ public class BankingProductController2 {
             }
         }
 
-
         return  "PIMIN";
     }
 
