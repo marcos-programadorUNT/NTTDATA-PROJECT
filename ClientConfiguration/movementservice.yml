@@ -6,7 +6,7 @@ server:
 
 spring:
   application:
-    name: movements
+    name: movementservice
   h2:
     console:
       enabled: true
