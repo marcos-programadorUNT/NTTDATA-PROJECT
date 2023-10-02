@@ -1,10 +1,8 @@
 package com.example.bankingproductclient.domain.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.*;
 import lombok.experimental.SuperBuilder;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -21,10 +19,14 @@ import java.util.List;
  */
 @Entity
 @Table(name = "banking_products")
+/*
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+
+ */
+@Data
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name="banking_product_type", discriminatorType = DiscriminatorType.STRING)
 //@SuperBuilder
@@ -55,6 +57,7 @@ public class BankingProduct {
     private Date registrationDate;
     @ManyToOne
     @JsonIgnore
+    //@JsonIgnoreProperties("bankingProducts")
     @JoinColumn(name = "bankId")
     private Bank bank;
     @OneToMany
@@ -62,6 +65,7 @@ public class BankingProduct {
     private List<Movement> movements;
     @ManyToOne
     @JsonIgnore
+    //@JsonIgnoreProperties("bankingProducts")
     @JoinColumn(name = "customer_id")
     private Customer customer;
     @Column(name = "banking_product_type", insertable = false, updatable = false)

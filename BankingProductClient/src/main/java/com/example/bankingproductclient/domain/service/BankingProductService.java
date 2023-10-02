@@ -6,7 +6,8 @@ import java.util.Optional;
 
 public interface BankingProductService {
 
-    public Optional<BankingProduct> findById(Integer id);
+    public BankingProduct findById(Integer id);
+    public BankingProduct updateBankingProduct(BankingProduct bankingProduct);
 
 
 

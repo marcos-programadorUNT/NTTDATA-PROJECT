@@ -14,5 +14,5 @@ public interface SavingsAccountService {
 
      */
     public List<SavingsAccount> findAll();
-    public Optional<SavingsAccount> findById(Integer id);
+    public SavingsAccount findById(Integer id);
 }
