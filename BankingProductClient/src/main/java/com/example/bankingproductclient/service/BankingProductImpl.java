@@ -28,6 +28,11 @@ public class BankingProductImpl implements BankingProductService {
     }
 
     @Override
+    public BankingProduct updateBankingProduct(BankingProduct bankingProduct) {
+        return bankingProductRepository.updateBankingProduct(bankingProduct);
+    }
+
+    @Override
     public BankingProduct createProduct(BankingProduct bankingProduct) {
         bankingProduct.setStatus("ACTIVE");
         bankingProduct.setRegistrationDate(new Date());

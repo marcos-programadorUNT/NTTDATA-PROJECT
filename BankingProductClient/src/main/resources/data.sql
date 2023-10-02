@@ -1,4 +1,3 @@
-
 INSERT INTO banks(business_name, direction, status)
 VALUES ('BCP','Calle Las Magnolias 1', 'ACTIVE'),
        ('Banco de la Nación','Calle Emperatriz 2', 'ACTIVE');

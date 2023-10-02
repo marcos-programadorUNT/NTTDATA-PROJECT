@@ -2,10 +2,7 @@ package com.example.bankingproductclient.domain.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import lombok.experimental.SuperBuilder;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -22,10 +19,14 @@ import java.util.List;
  */
 @Entity
 @Table(name = "banking_products")
+/*
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+
+ */
+@Data
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name="banking_product_type", discriminatorType = DiscriminatorType.STRING)
 //@SuperBuilder
@@ -33,12 +34,19 @@ public class BankingProduct {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    /*
+    @Column(name = "customer_type", length = 1, nullable = false)
+    @NotEmpty(message = "The customer_type should not be empty")
+    private String customerType;
+     */
     @Column(name = "status", length = 8, nullable = false)
     @NotEmpty(message = "The status should not be empty")
     private String status;
-    @Column(name = "main_banking_product_type", length = 40)
-    @NotEmpty(message = "The mainBankingProductType should not be empty")
+
+    @Column(name = "main_banking_product_type", length = 40, nullable = false)
+    @NotEmpty(message = "The status should not be empty")
     private String mainBankingProductType;
+
     @Column(name = "balance", columnDefinition = "DECIMAL(11,2)", nullable = false)
     @NotNull
     private float balance;
@@ -49,14 +57,15 @@ public class BankingProduct {
     private Date registrationDate;
     @ManyToOne
     @JsonIgnore
+    //@JsonIgnoreProperties("bankingProducts")
     @JoinColumn(name = "bankId")
     private Bank bank;
     @OneToMany
     @JoinColumn(name = "bankingProductId")
     private List<Movement> movements;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JsonIgnore
-    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    //@JsonIgnoreProperties("bankingProducts")
     @JoinColumn(name = "customer_id")
     private Customer customer;
     @Column(name = "banking_product_type", insertable = false, updatable = false)
