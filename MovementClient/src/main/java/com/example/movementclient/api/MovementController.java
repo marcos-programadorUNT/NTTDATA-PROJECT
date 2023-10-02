@@ -4,6 +4,7 @@ import com.example.movementclient.domain.model.BankingProduct;
 import com.example.movementclient.domain.model.Movement;
 import com.example.movementclient.domain.service.BankingProductService;
 import com.example.movementclient.domain.service.MovementService;
+import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -27,16 +28,17 @@ public class MovementController {
     }
 
     @GetMapping("/encontrar/{banking_product_id}")
-    public Optional<BankingProduct> encontrarBankingProduct(@PathVariable("banking_product_id") Integer banking_product_id)
+    public BankingProduct encontrarBankingProduct(@PathVariable("banking_product_id") Integer banking_product_id)
     {
         return bankingProductService.findBankingProductById(banking_product_id);
     }
 
 
     @PostMapping(value="/saveMovement", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public Movement saveMovement(@RequestBody Movement movement)
+
+    // public ResponseEntity<Map<String, Object>>
+    public ResponseEntity<Map<String, Object>> saveMovement(@RequestBody Movement movement)
     {
-        /*
         ResponseEntity<Map<String, Object>> evaluateBankingProduct=bankingProductService.bankingProductEvaluate(movement.getBankingProduct().getId());
         Map<String, Object> responseBody = evaluateBankingProduct.getBody();
         String httpStatusValue=null, status=null, message=null;
@@ -45,57 +47,47 @@ public class MovementController {
         if (responseBody != null && responseBody.containsKey("status")) {
             String statusBankingProduct = (String) responseBody.get("status");
             if ("success".equals(statusBankingProduct)) {
-                    Optional<BankingProduct> bankingProductOptional=bankingProductService.findBankingProductById(movement.getBankingProduct().getId());
-                    if (bankingProductOptional.isPresent())
+                    BankingProduct bankingProduct=bankingProductService.findBankingProductById(movement.getBankingProduct().getId());
+                    if (bankingProduct!=null)
                     {
-                        movement.setBankingProduct(bankingProductOptional.get());
-                        Movement movementSave=movementService.save(movement);
-
                         float newBalance=0;
                         switch (movement.getMovementType())
                         {
                             case "D":
                             case "P":
-                            newBalance=bankingProductOptional.get().getBalance()+movement.getMoneyRequired();
+                            newBalance=bankingProduct.getBalance()+movement.getMoneyRequired();
                             break;
                             case "W":
-                            newBalance=bankingProductOptional.get().getBalance()-movement.getMoneyRequired();
+                            newBalance=bankingProduct.getBalance()-movement.getMoneyRequired();
+                            break;
+                            default:
+                            newBalance=bankingProduct.getBalance();
                             break;
                         }
-                        bankingProductService.updateBankingProductByBalance(newBalance,bankingProductOptional.get().getId());
-
+                        bankingProduct.setBalance(newBalance);
+                        movement.setBankingProduct(bankingProduct);
+                        Movement movementSave=movementService.save(movement);
                         status="success";
-                        message="Normal";
-                        data.add(movement);
+                        message="Movement was saved successfully";
+                        data.add(movementSave);
                         httpStatusValue="CREATED";
                     }
             } else {
 
+                status="error";
+                message="Movement was not saved successfully.";
+                httpStatusValue="BAD_REQUEST";
             }
         } else {
-
+            status="error";
+            message="Movement was not saved successfully.";
+            httpStatusValue="BAD_REQUEST";
         }
 
         responseMethod.put("status",status);
         responseMethod.put("message",message);
         responseMethod.put("data",data);
         return ResponseEntity.status(HttpStatus.valueOf(httpStatusValue)).body(responseMethod);
-        */
-        /*
-        Optional<BankingProduct> bankingProductOptional=bankingProductService.findBankingProductById(movement.getBankingProduct().getId());
-        if (bankingProductOptional.isPresent())
-            movement.setBankingProduct(bankingProductOptional.get());
-         */
-
-
-
-        Optional<BankingProduct> bankingProductOptional=bankingProductService.findBankingProductById(movement.getBankingProduct().getId());
-        if (bankingProductOptional.isPresent())
-            movement.setBankingProduct(bankingProductOptional.get());
-
-
-        //Movement movementSave=movementService.save(movement);
-        return movementService.save(movement);
     }
 
     @PostMapping("/prueba")
@@ -104,5 +96,25 @@ public class MovementController {
         return cadena;
     }
 
+
+
+
+     /*
+        try {
+            BankingProduct bankingProduct=bankingProductService.findBankingProductById(movement.getBankingProduct().getId());
+            Movement movement1= new Movement();
+            movement1.setMovementType(movement.getMovementType());
+            movement1.setBankingProduct(bankingProduct);
+            movement1.setStatus(movement.getStatus());
+            movement1.setMoneyRequired(movement.getMoneyRequired());
+            movement1.setRegistrationDate(movement.getRegistrationDate());
+            Movement savedMovement = movementService.save(movement1);
+            return new ResponseEntity<>(savedMovement, HttpStatus.CREATED);
+        } catch (ConstraintViolationException e) {
+            // Aquí puedes obtener el mensaje de error de la excepción y enviarlo al cliente
+            String errorMessage = e.getMessage();
+            return new ResponseEntity<>(errorMessage, HttpStatus.BAD_REQUEST);
+        }
+         */
 
 }

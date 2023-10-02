@@ -39,7 +39,7 @@ public class SavingsAccountImpl implements SavingsAccountService {
         return savingsAccountRepository.findAll();
     }
     @Override
-    public Optional<SavingsAccount> findById(Integer id) {
-        return savingsAccountRepository.findById(id);
+    public SavingsAccount findById(Integer id) {
+        return savingsAccountRepository.findById(id).orElse(null);
     }
 }

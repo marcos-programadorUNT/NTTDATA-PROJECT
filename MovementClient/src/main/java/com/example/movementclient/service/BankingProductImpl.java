@@ -7,13 +7,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.Map;
 import java.util.Optional;
 
 @Service
 public class BankingProductImpl implements BankingProductService {
-
     @Autowired
     private BankingProductRepository bankingProductRepository;
     public ResponseEntity<Map<String, Object>> bankingProductEvaluate(@PathVariable("banking_product_id") Integer banking_product_id)
@@ -21,16 +21,12 @@ public class BankingProductImpl implements BankingProductService {
         return bankingProductRepository.bankingProductEvaluate(banking_product_id);
 
     }
-
     @Override
-    public Optional<BankingProduct> findBankingProductById(Integer banking_product_id) {
+    public BankingProduct findBankingProductById(Integer banking_product_id) {
         return bankingProductRepository.findBankingProductById(banking_product_id);
     }
-
-    /*
     @Override
-    public Optional<BankingProduct> updateBankingProductByBalance(Float balance, Integer banking_product_id) {
-        return bankingProductRepository.updateBankingProductByBalance(balance,banking_product_id);
+    public BankingProduct updateBankingProduct(BankingProduct bankingProduct) {
+        return bankingProductRepository.updateBankingProduct(bankingProduct);
     }
-     */
 }

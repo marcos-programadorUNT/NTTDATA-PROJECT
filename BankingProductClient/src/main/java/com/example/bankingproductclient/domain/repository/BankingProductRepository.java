@@ -11,7 +11,8 @@ public interface BankingProductRepository extends JpaRepository<BankingProduct,I
     /*
     public Optional<BankingProduct> findById(Integer id);
      */
+    public Optional<BankingProduct> findById(Integer id);
 
-    @Query("UPDATE BankingProduct  b SET b.balance=?1 WHERE b.id=?2")
-    public Optional<BankingProduct> updateBankingProductByBalance(float balance, Integer banking_product_id);
+    @Query("UPDATE BankingProduct b SET b=?2 WHERE b.id=3")
+    public BankingProduct updateBankingProduct(BankingProduct bankingProduct);
 }

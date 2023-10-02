@@ -15,7 +15,7 @@ public class FixedTermAccountImpl implements FixedTermAccountService {
     @Autowired
     private FixedTermAccountRepository fixedTermAccountRepository;
     @Override
-    public Optional<FixedTermAccount> findById(Integer id) {
-        return fixedTermAccountRepository.findById(id);
+    public FixedTermAccount findById(Integer id) {
+        return fixedTermAccountRepository.findById(id).orElse(null);
     }
 }

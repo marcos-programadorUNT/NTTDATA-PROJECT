@@ -1,4 +1,3 @@
-
 INSERT INTO banks(business_name, direction, status)
 VALUES ('BCP','Calle Las Magnolias 1', 'ACTIVE'),
        ('Banco de la Nación','Calle Emperatriz 2', 'ACTIVE');
@@ -32,7 +31,7 @@ VALUES ('passive_banking_product','savings_account','ACTIVE',1789.56,'2023-12-04
        ('passive_banking_product','savings_account','ACTIVE',1236.47,'2023-05-12',1,2,5,0,0);
 
 INSERT INTO banking_products(main_banking_product_type,banking_product_type,status,balance,registration_date,bank_id,customer_id, monthly_movement_limit,maintenance_commission_amount, specific_day_movement)
-VALUES ('passive_banking_product','fixed_term_account','ACTIVE',14569.25,'2023-09-29',1,3,0,0,1);
+VALUES ('passive_banking_product','fixed_term_account','ACTIVE',14569.25,'2023-09-29',1,3,0,0,2);
 
 INSERT INTO banking_products(main_banking_product_type,banking_product_type,status,balance,registration_date,bank_id,customer_id, monthly_movement_limit,maintenance_commission_amount, specific_day_movement)
 VALUES ('active_banking_product','active_banking_product','ACTIVE',17896.47,'2023-07-31',1,4,0,0,0);

@@ -14,13 +14,14 @@ public class BankingProductImpl implements BankingProductService {
     @Autowired
     private BankingProductRepository bankingProductRepository;
     @Override
-    public Optional<BankingProduct> findById(Integer id) {
-        return bankingProductRepository.findById(id);
+    public BankingProduct findById(Integer id) {
+
+        return bankingProductRepository.findById(id).orElse(null);
     }
 
     @Override
-    public Optional<BankingProduct> updateBankingProductByBalance(float balance, Integer banking_product_id) {
-        return bankingProductRepository.updateBankingProductByBalance(balance,banking_product_id);
+    public BankingProduct updateBankingProduct(BankingProduct bankingProduct) {
+        return bankingProductRepository.updateBankingProduct(bankingProduct);
     }
 
 

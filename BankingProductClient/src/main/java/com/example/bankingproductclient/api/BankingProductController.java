@@ -41,49 +41,61 @@ public class BankingProductController {
 
     @GetMapping(value = "/bankingProductEvaluate/{banking_product_id}")
     public ResponseEntity<Map<String, Object>> bankingProductEvaluate(@PathVariable(name="banking_product_id", required=false) Integer banking_product_id) {
-        Optional<BankingProduct> bankingProduct=bankingProductService.findById(banking_product_id);
+        BankingProduct bankingProduct=bankingProductService.findById(banking_product_id);
         Map<String, Object> responseMethod = new HashMap<>();
         String httpStatusValue="CREATED", status=null, message=null;
         List<Object> data =new ArrayList<>();
-
-        if(!bankingProduct.isEmpty())
+        if(!bankingProduct.equals(null))
         {
-            if(Objects.equals(bankingProduct.get().getBankingProductType().toString(), "savings_account"))
+            if(Objects.equals(bankingProduct.getBankingProductType().toString(), "savings_account"))
             {
-                Long movementsCount=bankingProduct.get().getMovements().stream().count();
-                Optional<SavingsAccount> savingsAccount =savingsAccountService.findById(banking_product_id);
-                if(savingsAccount.get().getMonthlyMovementLimit()>movementsCount)
+                Long movementsCount= (long) bankingProduct.getMovements().size();
+                SavingsAccount savingsAccount =savingsAccountService.findById(banking_product_id);
+                if(savingsAccount.getMonthlyMovementLimit()>movementsCount)
                 {
 
                     status="success";
-                    message="Normal";
-                    httpStatusValue="CREATED";
-                    data.add(bankingProduct.get().getCustomer());
+                    message="The process was continued.";
+                    httpStatusValue="OK";
+                    data.add(bankingProduct.getCustomer());
                 }
                 else
                 {
-
-
+                    status="error";
+                    message="The process cannot continue.";
+                    httpStatusValue="BAD_REQUEST";
                 }
-
             }
             else
             {
-                if (Objects.equals(bankingProduct.get().getBankingProductType().toString(), "fixed_term_account"))
+                if (Objects.equals(bankingProduct.getBankingProductType().toString(), "fixed_term_account"))
                 {
-                    Optional<FixedTermAccount> fixedTermAccount = fixedTermAccountService.findById(banking_product_id);
+                    FixedTermAccount fixedTermAccount = fixedTermAccountService.findById(banking_product_id);
                     LocalDate fechaActual = LocalDate.now();
                     byte diaActual = (byte) fechaActual.getDayOfMonth();
-                    if (Objects.equals(fixedTermAccount.get().getSpecificDayMovement(), diaActual)) {
+
+                    if (Objects.equals(fixedTermAccount.getSpecificDayMovement(), diaActual)) {
                         status="success";
-                        message="Normal";
-                        httpStatusValue="CREATED";
-                        data.add(bankingProduct.get().getCustomer());
+                        message="The process was continued.";
+                        httpStatusValue="OK";
+                        data.add(bankingProduct.getCustomer());
                     }
+                    else{
+                        status="error";
+                        message="The process cannot continue.";
+                        httpStatusValue="BAD_REQUEST";
+
+                    }
+                }
+                else
+                {
+                    status="error";
+                    message="The process cannot continue.";
+                    httpStatusValue="BAD_REQUEST";
+
                 }
             }
         }
-
         responseMethod.put("status",status);
         responseMethod.put("message",message);
         responseMethod.put("data",data);
@@ -91,15 +103,15 @@ public class BankingProductController {
     }
 
     @GetMapping(value = "/findBankingProductById/{banking_product_id}")
-    public Optional<BankingProduct> findBankingProductById(@PathVariable(name="banking_product_id", required=false) Integer banking_product_id)
+    public BankingProduct findBankingProductById(@PathVariable(name="banking_product_id", required=false) Integer banking_product_id)
     {
         return bankingProductService.findById(banking_product_id);
     }
 
-    @GetMapping("/updateBankingProductByBalance")
-    public Optional<BankingProduct> updateBankingProductByBalance(Float balance,Integer banking_product_id)
+    @PutMapping("/updateBankingProduct")
+    public BankingProduct updateBankingProduct(BankingProduct bankingProduct)
     {
-        return bankingProductService.updateBankingProductByBalance(balance,banking_product_id);
+        return bankingProductService.updateBankingProduct(bankingProduct);
     }
 
 

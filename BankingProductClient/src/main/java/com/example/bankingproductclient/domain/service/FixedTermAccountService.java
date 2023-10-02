@@ -6,5 +6,5 @@ import com.example.bankingproductclient.domain.model.FixedTermAccount;
 import java.util.Optional;
 
 public interface FixedTermAccountService {
-    public Optional<FixedTermAccount> findById(Integer id);
+    public FixedTermAccount findById(Integer id);
 }

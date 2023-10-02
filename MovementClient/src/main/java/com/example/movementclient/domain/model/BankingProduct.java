@@ -1,6 +1,7 @@
 package com.example.movementclient.domain.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -54,13 +55,15 @@ public class BankingProduct {
     private Date registrationDate;
     @ManyToOne
     @JsonIgnore
+    //@JsonIgnoreProperties("bankingProducts")
     @JoinColumn(name = "bankId")
     private Bank bank;
     @OneToMany
-    @JoinColumn(name = "banking_product_id")
+    @JoinColumn(name = "bankingProductId")
     private List<Movement> movements;
     @ManyToOne
     @JsonIgnore
+    //@JsonIgnoreProperties("bankingProducts")
     @JoinColumn(name = "customer_id")
     private Customer customer;
     @Column(name = "banking_product_type", insertable = false, updatable = false)
