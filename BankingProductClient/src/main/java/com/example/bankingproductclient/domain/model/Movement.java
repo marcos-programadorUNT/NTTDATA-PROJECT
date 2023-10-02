@@ -1,5 +1,6 @@
 package com.example.bankingproductclient.domain.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -36,7 +37,7 @@ public class Movement{
     @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date registrationDate;
     @ManyToOne
-    //@JsonIgnore
+    @JsonIgnore
     @JoinColumn(name = "bankingProductId")
     private BankingProduct bankingProduct;
 }

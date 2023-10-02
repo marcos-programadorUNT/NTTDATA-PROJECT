@@ -18,6 +18,10 @@ public class BankingProductImpl implements BankingProductService {
         return bankingProductRepository.findById(id);
     }
 
+    @Override
+    public Optional<BankingProduct> updateBankingProductByBalance(float balance, Integer banking_product_id) {
+        return bankingProductRepository.updateBankingProductByBalance(balance,banking_product_id);
+    }
 
 
 }
