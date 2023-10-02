@@ -13,7 +13,7 @@ spring:
     password:
     data: classpath:data.sql
   application:
-    name: movements
+    name: bankingproductservice
 
 eureka:
   client:
