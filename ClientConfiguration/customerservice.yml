@@ -1,0 +1,52 @@
+server:
+  port: 8090
+  error:
+    include-message: always
+    include-binding-errors: always
+
+spring:
+  application:
+    name: customerservice
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+      settings:
+        trace: false
+        web-allow-others: false
+  jpa:
+    defer-datasource-initialization: true
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    database-platform: org.hibernate.dialect.H2Dialect
+    properties:
+      hibernate:
+        format_sql: true
+        validator:
+          apply_to_dll: false
+
+  datasource:
+    initialization-mode: always
+    url: jdbc:h2:mem:customer;DB_CLOSE_ON_EXIT=FALSE;DB_CLOSE_DELAY=-1
+    driverClassName: org.h2.Driver
+    username: sa
+    password: 12345
+    data: classpath:data.sql
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+Feign:
+  hystrix:
+    enabled: true
+  ribbon:
+    enabled: true
+  circuitbreaker:
+      enabled: true
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
