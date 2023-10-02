@@ -21,8 +21,8 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CurrentAccount extends PassiveBankingProduct{
-    @Column(name = "maintenance_commission_amount", columnDefinition = "DECIMAL(7,2)", nullable = false)
-    @NotNull(message = "The maintenance_commission_amount should not be empty")
+    @Column(name = "maintenance_commission_amount", columnDefinition = "DECIMAL(7,2)")
+    //@NotNull(message = "The maintenance_commission_amount should not be empty")
     private float maintenanceCommissionAmount;
     @ManyToMany
     @JoinTable(name = "account_holders",

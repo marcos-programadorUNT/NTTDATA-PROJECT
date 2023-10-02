@@ -24,8 +24,8 @@ import javax.validation.constraints.NotNull;
 @AllArgsConstructor
 //@SuperBuilder
 public class SavingsAccount extends PassiveBankingProduct{
-    @Column(name = "monthly_movement_limit", nullable = false)
-    @NotNull(message = "The monthly_movement_limit should not be empty")
+    @Column(name = "monthly_movement_limit")
+    //@NotNull(message = "The monthly_movement_limit should not be empty")
     private byte monthlyMovementLimit;
 
     /*

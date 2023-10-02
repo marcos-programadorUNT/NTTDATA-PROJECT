@@ -23,7 +23,7 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 public class FixedTermAccount extends PassiveBankingProduct{
-    @Column(name = "specific_day_movement", nullable = false)
-    @NotNull(message = "The specific_day_movement should not be empty")
+    @Column(name = "specific_day_movement")
+    //@NotNull(message = "The specific_day_movement should not be empty")
     private byte specificDayMovement;
 }

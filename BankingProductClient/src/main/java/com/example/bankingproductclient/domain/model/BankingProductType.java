@@ -5,6 +5,9 @@ public enum BankingProductType {
     passive_banking_product,
     savings_account,
     fixed_term_account,
-    current_account
+    current_account,
+    credit_card,
+    personal_credit,
+    business_credit
 
 }

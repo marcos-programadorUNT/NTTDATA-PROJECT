@@ -1,6 +1,7 @@
 package com.example.bankingproductclient.domain.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -60,8 +61,9 @@ public class BankingProduct {
     @OneToMany
     @JoinColumn(name = "bankingProductId")
     private List<Movement> movements;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JsonIgnore
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @JoinColumn(name = "customer_id")
     private Customer customer;
     @Column(name = "banking_product_type", insertable = false, updatable = false)

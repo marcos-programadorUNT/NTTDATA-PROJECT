@@ -1,5 +1,6 @@
 package com.example.bankingproductclient.domain.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -29,6 +30,7 @@ public class Bank{
     @NotEmpty(message = "The status should not be empty")
     private String status;
     @OneToMany
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @JoinColumn(name = "bankId")
     private List<BankingProduct> bankingProducts;
 }
