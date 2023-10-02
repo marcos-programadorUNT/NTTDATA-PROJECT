@@ -38,7 +38,7 @@ public class BankingProductController2 {
         }
         return bankingProduct;
     }
-     */
+
 
     @GetMapping(value = "/bankingProductEvaluate/{banking_product_id}")
     public String bankingProductEvaluate(@PathVariable(name="banking_product_id", required=false) Integer banking_product_id) {
@@ -61,4 +61,6 @@ public class BankingProductController2 {
     public List<SavingsAccount> findAll() {
         return  savingsAccountService.findAll();
     }
+
+     */
 }

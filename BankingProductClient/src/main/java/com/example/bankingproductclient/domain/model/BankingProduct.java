@@ -33,19 +33,12 @@ public class BankingProduct {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    /*
-    @Column(name = "customer_type", length = 1, nullable = false)
-    @NotEmpty(message = "The customer_type should not be empty")
-    private String customerType;
-     */
     @Column(name = "status", length = 8, nullable = false)
     @NotEmpty(message = "The status should not be empty")
     private String status;
-
-    @Column(name = "main_banking_product_type", length = 40, nullable = false)
-    @NotEmpty(message = "The status should not be empty")
+    @Column(name = "main_banking_product_type", length = 40)
+    @NotEmpty(message = "The mainBankingProductType should not be empty")
     private String mainBankingProductType;
-
     @Column(name = "balance", columnDefinition = "DECIMAL(11,2)", nullable = false)
     @NotNull
     private float balance;

@@ -26,7 +26,7 @@ public class Signatory implements Serializable{
     @ManyToOne
     @JoinColumn(name = "customer_id")
     private Customer customer;
-    @Column(name = "status", length = 8, nullable = false)
+    @Column(name = "status", length = 8)
     @NotEmpty(message = "The status should not be empty")
     private String status;
 }
