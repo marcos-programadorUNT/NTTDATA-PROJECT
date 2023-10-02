@@ -21,6 +21,7 @@ public class MovementController {
     @Autowired
     private MovementService movementService;
 
+
     @GetMapping("/{banking_product_id}")
     public ResponseEntity<Map<String, Object>> metBakingProduct(@PathVariable("banking_product_id") Integer banking_product_id)
     {
@@ -35,10 +36,9 @@ public class MovementController {
 
 
     @PostMapping(value="/saveMovement", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-
-    // public ResponseEntity<Map<String, Object>>
     public ResponseEntity<Map<String, Object>> saveMovement(@RequestBody Movement movement)
     {
+
         ResponseEntity<Map<String, Object>> evaluateBankingProduct=bankingProductService.bankingProductEvaluate(movement.getBankingProduct().getId());
         Map<String, Object> responseBody = evaluateBankingProduct.getBody();
         String httpStatusValue=null, status=null, message=null;
@@ -90,31 +90,9 @@ public class MovementController {
         return ResponseEntity.status(HttpStatus.valueOf(httpStatusValue)).body(responseMethod);
     }
 
-    @PostMapping("/prueba")
-    public String saveMovement(@RequestBody String cadena)
-    {
-        return cadena;
+    @GetMapping(value = "/movementsFindByCustomerId/{customer_id}")
+    public List<Movement> movementsFindByCustomerId(@PathVariable("customer_id") Long customer_id){
+        return movementService.movementsFindByCustomerId(customer_id);
     }
-
-
-
-
-     /*
-        try {
-            BankingProduct bankingProduct=bankingProductService.findBankingProductById(movement.getBankingProduct().getId());
-            Movement movement1= new Movement();
-            movement1.setMovementType(movement.getMovementType());
-            movement1.setBankingProduct(bankingProduct);
-            movement1.setStatus(movement.getStatus());
-            movement1.setMoneyRequired(movement.getMoneyRequired());
-            movement1.setRegistrationDate(movement.getRegistrationDate());
-            Movement savedMovement = movementService.save(movement1);
-            return new ResponseEntity<>(savedMovement, HttpStatus.CREATED);
-        } catch (ConstraintViolationException e) {
-            // Aquí puedes obtener el mensaje de error de la excepción y enviarlo al cliente
-            String errorMessage = e.getMessage();
-            return new ResponseEntity<>(errorMessage, HttpStatus.BAD_REQUEST);
-        }
-         */
 
 }
